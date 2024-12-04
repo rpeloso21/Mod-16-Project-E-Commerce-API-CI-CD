@@ -1,0 +1,718 @@
+swagger: '2.0'
+info:
+  title: 'E-Commerce API'
+  version: '1.0.0'
+host: '127.0.0.1:5000'
+schemes:
+  - 'http'
+consumes:
+  - 'application/json'
+produces:
+  - 'application/json'
+securityDefinitions:
+  bearerAuth:
+    type: apiKey
+    name: Authorizaion
+    in: header
+paths:
+  /employees:
+    get:
+      tags:
+        - employees
+      summary: "Get all employees"
+      description: "Retrieve a list of all employees"
+      responses:
+        '200':
+          description: 'Successful response'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Employee'
+    post:
+      tags:
+        - employees
+      summary: 'Create employee'
+      description: 'endpoint for creating a new employee'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'info for new employee creation'
+          required: true
+          schema:
+            $ref: "#/definitions/Employee"
+      responses:
+        200:
+          description: 'New employee created successfully'
+          schema:
+            $ref: '#/definitions/Employee'
+          examples:
+            application/json:
+              value:
+                id: 1
+                name: "Tom Jones"
+                position: "CEO"
+  /products:
+    get:
+      tags:
+        - products
+      summary: "Get all products"
+      description: "Retrieve a list of all products"
+      responses:
+        '200':
+          description: 'Successful response'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Product'
+    post:
+      tags:
+        - products
+      summary: 'Create product'
+      description: 'endpoint for creating a new product'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'info for new product creation'
+          required: true
+          schema:
+            $ref: "#/definitions/Product"
+      responses:
+        200:
+          description: 'New product created successfully'
+          schema:
+            $ref: '#/definitions/Product'
+          examples:
+            application/json:
+              value:
+                id: 1
+                name: "Chair"
+                price: "29.99"
+  /products/{id}:
+    put:
+      tags:
+        - products
+      summary: 'Update product'
+      description: 'endpoint for updating a product'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: 'ID of the product to update'
+          required: true
+          type: 'integer'
+          format: 'int32'
+        - in: 'body'
+          name: 'body'
+          description: 'update information for the product'
+          required: true
+          schema:
+            $ref: "#/definitions/Product"
+      responses:
+        200:
+          description: 'Product updated successfully'
+          schema:
+            $ref: '#/definitions/Product'
+          examples:
+            application/json:
+              value:
+                id: 1
+                name: "Chair"
+                price: "29.99"
+    delete:
+      tags:
+        - products
+      summary: 'Delete product'
+      description: 'endpoint for deleting a product'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: 'ID of the product to delete'
+          required: true
+          type: 'integer'
+          format: 'int32'
+      responses:
+        200:
+          description: 'Product deleted successfully'
+          schema:
+            $ref: '#/definitions/Product'
+          examples:
+            application/json:
+              value:
+                id: 1
+                name: "Chair"
+                price: "29.99"
+  /orders:
+    get:
+      tags:
+        - orders
+      summary: "Get all orders"
+      description: "Retrieve a list of all orders"
+      responses:
+        '200':
+          description: 'Successful response'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Order'
+    post:
+      tags:
+        - orders
+      summary: 'Create order'
+      description: 'endpoint for creating a new order'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'info for new order creation'
+          required: true
+          schema:
+            $ref: "#/definitions/Order"
+      responses:
+        200:
+          description: 'New order created successfully'
+          schema:
+            $ref: '#/definitions/Order'
+          examples:
+            application/json:
+              value:
+                id: 1
+                customer_id: 2
+                product_id: 2
+                quantity: 7
+                total_price: 101.99
+  /orders/{id}:
+    put:
+      tags:
+        - orders
+      summary: 'Update order'
+      description: 'endpoint for updating an order'
+      parameters:
+        - in: 'path'
+          name: 'id'
+          description: 'ID of the order to delete'
+          required: true
+          type: 'integer'
+          format: 'int32'
+        - in: 'body'
+          name: 'body'
+          description: 'update information for the order'
+          required: true
+          schema:
+            $ref: "#/definitions/Order"
+      responses:
+        200:
+          description: 'Order updated successfully'
+          schema:
+            $ref: '#/definitions/Order'
+          examples:
+            application/json:
+              value:
+                id: 1
+                customer_id: 2
+                product_id: 2
+                quantity: 7
+                total_price: 101.99
+    delete:
+      tags:
+        - orders
+      summary: 'Delete order'
+      description: 'endpoint for deleting a order'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: 'ID of the order to delete'
+          required: true
+          type: 'integer'
+          format: 'int32'
+      responses:
+        200:
+          description: 'Order deleted successfully'
+          schema:
+            $ref: '#/definitions/Order'
+          examples:
+            application/json:
+              value:
+                id: 1
+                customer_id: 2
+                product_id: 2
+                quantity: 7
+                total_price: 101.99
+  /productions:
+    get:
+      tags:
+        - productions
+      summary: "Get all productions"
+      description: "Retrieve a list of all productions"
+      responses:
+        '200':
+          description: 'Successful response'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Production'
+    post:
+      tags:
+        - productions
+      summary: 'Create production'
+      description: 'endpoint for creating a new production'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'info for new production creation'
+          required: true
+          schema:
+            $ref: "#/definitions/Production"
+      responses:
+        200:
+          description: 'New production created successfully'
+          schema:
+            $ref: '#/definitions/Production'
+          examples:
+            application/json:
+              value:
+                id: 1
+                quantity_produced: 15
+                product_id: 2
+                date_produced: "2024-02-05"
+                employee_id: 2
+  /customers:
+    get:
+      tags:
+        - customers
+      summary: "Get all customers"
+      description: "Retrieve a list of all customers"
+      responses:
+        '200':
+          description: 'Successful response'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Customer'
+        400:
+          description: 'Bad request'
+          schema:
+            $ref: "#/definitions/Error "
+          examples:
+            application/json:
+              value:
+                status: 'error'
+                message: 'invalid credentials'
+        401:
+          description: 'Unauthorized'
+          schema:
+            $ref: "#/definitions/Error "
+          examples:
+            application/json:
+              value:
+                status: 'error'
+                message: 'unauthorized user'
+        403:
+          description: 'Forbidden'
+          schema:
+            $ref: "#/definitions/Error "
+          examples:
+            application/json:
+              value:
+                status: 'error'
+                message: 'forbidden content'
+        404:
+          description: 'Not Found'
+          schema:
+            $ref: "#/definitions/Error "
+          examples:
+            application/json:
+              value:
+                status: 'error'
+                message: 'content not found'
+        405:
+          description: 'Method not allowed'
+          schema:
+            $ref: "#/definitions/Error "
+          examples:
+            application/json:
+              value:
+                status: 'error'
+                message: 'invalid method for this endpoint'
+      security: 
+        - bearerAuth: []
+    post:
+      tags:
+        - customers
+      summary: 'Create customer'
+      description: 'endpoint for creating a new customer'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'info for new customer creation'
+          required: true
+          schema:
+            $ref: "#/definitions/Customer"
+      responses:
+        200:
+          description: 'New customer created successfully'
+          schema:
+            $ref: '#/definitions/Customer'
+          examples:
+            application/json:
+              value:
+                id: 1
+                name: "Tom Jones"
+                phone: "8675309"
+                email: "tjones25@gmail.com"
+  /customers/{id}:
+    put:
+      tags:
+        - customers
+      summary: 'Update customer'
+      description: 'endpoint for updating a customer'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: 'ID of the customer to update'
+          required: true
+          type: 'integer'
+          format: 'int32'
+        - in: 'body'
+          name: 'body'
+          description: 'update information for the customer'
+          required: true
+          schema:
+            $ref: "#/definitions/Customer"
+      responses:
+        200:
+          description: 'Customer updated successfully'
+          schema:
+            $ref: '#/definitions/Customer'
+          examples:
+            application/json:
+              value:
+                id: 1
+                name: "Tom Jones"
+                phone: "8675309"
+                email: "tjones25@gmail.com"
+    delete:
+      tags:
+        - customers
+      summary: 'Delete customer'
+      description: 'endpoint for deleting an customer'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: 'ID of the customer to delete'
+          required: true
+          type: 'integer'
+          format: 'int32'
+      responses:
+        200:
+          description: 'Customer deleted successfully'
+          schema:
+            $ref: '#/definitions/Customer'
+          examples:
+            application/json:
+              value:
+                id: 1
+                name: "Tom Jones"
+                phone: "8675309"
+                email: "tjones25@gmail.com"
+  /accounts:
+    get:
+      tags:
+        - accounts
+      summary: "Get all accounts"
+      description: "Retrieve a list of all accounts"
+      responses:
+        '200':
+          description: 'Successful response'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Account'
+    post:
+      tags:
+        - accounts
+      summary: 'Create account'
+      description: 'endpoint for creating a new account'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'info for new account creation'
+          required: true
+          schema:
+            $ref: "#/definitions/Account"
+      responses:
+        200:
+          description: 'New account created successfully'
+          schema:
+            $ref: '#/definitions/Account'
+          examples:
+            application/json:
+              value:
+                id: 1
+                username: "bstevens22"
+                password: "bstevens229*"
+                customer_id: 1
+                role: "admin"
+  /accounts/{id}:
+    put:
+      tags:
+        - accounts
+      summary: 'Update account'
+      description: 'endpoint for updating a account'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: 'ID of the account to update'
+          required: true
+          type: 'integer'
+          format: 'int32'
+        - in: 'body'
+          name: 'body'
+          description: 'update information for the account'
+          required: true
+          schema:
+            $ref: "#/definitions/Account"
+      responses:
+        200:
+          description: 'Account updated successfully'
+          schema:
+            $ref: '#/definitions/Account'
+          examples:
+            application/json:
+              value:
+                id: 1
+                username: "bstevens22"
+                password: "bstevens229*"
+                customer_id: 1
+                role: "admin"
+    delete:
+      tags:
+        - accounts
+      summary: 'Delete account'
+      description: 'endpoint for deleting an account'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: 'ID of the account to delete'
+          required: true
+          type: 'integer'
+          format: 'int32'
+      responses:
+        200:
+          description: 'Account deleted successfully'
+          schema:
+            $ref: '#/definitions/Account'
+          examples:
+            application/json:
+              value:
+                id: 1
+                username: "bstevens22"
+                password: "bstevens229*"
+                customer_id: 1
+                role: "admin"
+  /accounts/login:
+    post:
+      tags:
+        - accounts
+      summary: 'Login endpoint'
+      description: 'endpoint for user authendication'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'credentials for login'
+          required: true
+          schema:
+            $ref: "#/definitions/LoginCredentials"
+      responses:
+        200:
+          description: 'login successful'
+          schema:
+            $ref: '#/definitions/LoginResponse'
+          examples:
+            application/json:
+              value:
+                auth_token: 'alskjdsj832919lkalkjafs...'
+                message: "Login successful"
+                statuf: "Success"
+        400:
+          description: 'Bad request'
+          schema:
+            $ref: "#/definitions/Error "
+          examples:
+            application/json:
+              value:
+                status: 'error'
+                message: 'invalid credentials'
+definitions:
+  LoginCredentials:
+    type: 'object'
+    properties:
+      username:
+        type: 'string'
+        description: 'Username'
+      password:
+        type: 'string'
+        format: 'password'
+        description: 'Password'
+    required:
+      - 'username'
+      - 'password'
+  LoginResponse:
+    type: 'object'
+    properties:
+      auth_token:
+        type: 'string'
+        description: 'Authentication token'
+      message: 
+        type: 'string'
+        description: 'Message indicating success or failure'
+      status:
+        type: 'string'
+        description: 'Status of the operation'
+    required: 
+      - 'auth_token'
+      -  'message'
+  Error:
+    type: 'object'
+    properties:
+      status:
+        type: 'string'
+        description: 'status of the error'
+      message:
+        type: 'string'
+        description: 'Description of the error'
+    required:
+      - 'status'
+      - 'message'
+  Product:
+    type: 'object'
+    properties:
+      name:
+        type: 'string'
+        description: "product's name"
+      price: 
+        type: 'float'
+        description: "products's price"
+      id:
+        type: 'integer'
+        format: 'int64'
+        description: "products's unique id"
+    required:
+      - "name"
+      - "price"
+      - "id"
+  Account:
+    type: 'object'
+    properties:
+      username:
+        type: 'string'
+        description: "account's username"
+      password: 
+        type: 'float'
+        description: "products's password"
+      id:
+        type: 'integer'
+        format: 'int64'
+        description: "accounts's unique id"
+      customer_id:
+        type: 'integer'
+        format: 'int64'
+        description: "id for associated customer"
+      role:
+        type: 'string'
+        description: "the role of the customer associated with the account"
+    required:
+      - "username"
+      - "password"
+      - "id"
+      - "role"
+      - "customer_id"
+  Employee:
+    type: 'object'
+    properties:
+      name:
+        type: 'string'
+        description: "employee's name"
+      position: 
+        type: 'string'
+        description: "eomployee's position"
+      id:
+        type: 'integer'
+        format: 'int64'
+        description: "employee's unique id"
+    required:
+      - "name"
+      - "position"
+      - "id"
+  Order:
+    type: 'object'
+    properties:
+      customer_id: 
+        type: 'integer'
+        description: "Reference to customer who placed the order"
+      product_id:
+        type: 'integer'
+        description: "Reference to the product being ordered"
+      quantity:
+        type: 'integer'
+        description: "Amount of the product that was ordered"
+      total_price:
+        type: "integer"
+        description: "The sum price for all the products"
+      id:
+        type: 'integer'
+        format: 'int64'
+        description: "Order's unique id"
+    required:
+      - "id"
+      - "customer_id"
+      - "product_id"
+      - "quantity"
+      - "total_price"
+  Customer:
+    type: 'object'
+    properties:
+      name:
+        type: 'string'
+        description: "customer's name"
+      email: 
+        type: 'string'
+        description: "customer's email"
+      phone:
+        type: 'string'
+        description: "customer's phone number"
+      id:
+        type: 'integer'
+        format: 'int64'
+        description: "customer's unique id"
+    required:
+      - "name"
+      - "email"
+      - "phone"
+      - "id"
+  Production:
+    type: 'object'
+    properties:
+      employee_id:
+        type: 'integer'
+        description: "Associated employee id"
+      date_produced:
+        type: 'date'
+        description: "The date of the production"
+      product_id: 
+        type: 'integer'
+        description: "Id of the product being produced"
+      quantity_produced:
+        type: 'integer'
+        description: "Amount of the product being produced"
+      id:
+        type: 'integer'
+        format: 'int64'
+        description: "customer's unique id"
+    required:
+      - "employee_id"
+      - "date_produced"
+      - "product_id"
+      - "id"
+      - "quantity_produced"
+
+      
+
+
