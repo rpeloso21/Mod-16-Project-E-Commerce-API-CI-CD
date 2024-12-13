@@ -6,8 +6,8 @@ from marshmallow import ValidationError
 from caching import cache
 
 
-@token_required
-@role_required('admin')
+# @token_required
+# @role_required('admin')
 def save():
     try:
         account_data = customer_account_schema.load(request.json)
@@ -21,24 +21,24 @@ def save():
         return jsonify({"message": "Fallback method error activated","body":account_data}), 400
 
 
-@cache.cached(timeout=60)
-@token_required
-@role_required('admin')
+# @cache.cached(timeout=60)
+# @token_required
+# @role_required('admin')
 def find_all():
     customer_account = customerAccountService.find_all()
     return customer_accounts_schema.jsonify(customer_account), 200
 
 
-@token_required
-@role_required('admin')
+# @token_required
+# @role_required('admin')
 def update_customer_account(id):
     customer_account = customerAccountService.update_customer_account(id)
 
     return customer_account_schema.jsonify(customer_account)
 
 
-@token_required
-@role_required('admin')
+# @token_required
+# @role_required('admin')
 def delete_customer_account(id):
     customer_account = customerAccountService.delete_customer_account(id)
     return customer_account_schema.jsonify(customer_account)

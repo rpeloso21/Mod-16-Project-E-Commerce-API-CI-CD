@@ -6,8 +6,8 @@ from caching import cache
 from utils.util import role_required, token_required
 
 
-@token_required
-@role_required('admin')
+# @token_required
+# @role_required('admin')
 def save():
     try:
         order_data = order_schema.load(request.json)
@@ -21,24 +21,24 @@ def save():
         return jsonify({"message": "Fallback method error activated","body":order_data}), 400
 
 
-@cache.cached(timeout=60)
-@token_required
-@role_required('admin')
+# @cache.cached(timeout=60)
+# @token_required
+# @role_required('admin')
 def find_all():
     orders = orderService.find_all()
     return orders_schema.jsonify(orders), 200
 
 
-@token_required
-@role_required('admin')
-@cache.cached(timeout=60)
+# @token_required
+# @role_required('admin')
+# @cache.cached(timeout=60)
 def find_one(id):
     order = orderService.find_one(id)
     return order_schema.jsonify(order), 200
 
 
-@token_required
-@role_required('admin')
+# @token_required
+# @role_required('admin')
 def find_all_pagination():
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 10, type=int)

@@ -17,7 +17,7 @@ def save():
     else:
         return jsonify({"message": "Failed to save."}), 400
 
-@cache.cached(timeout=60)
+# @cache.cached(timeout=60)
 def find_all():
     users = userService.find_all()
     return users_schema.jsonify(users), 200

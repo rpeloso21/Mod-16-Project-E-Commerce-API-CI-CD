@@ -9,8 +9,8 @@ from sqlalchemy.orm import Session
 from database import db
 
 
-@token_required
-@role_required('admin')
+# @token_required
+# @role_required('admin')
 def save():
     try:
         customer_data = customer_schema.load(request.json)
@@ -24,16 +24,16 @@ def save():
         return jsonify({"message": "Fallback method error activated","body":customer_data}), 400
 
 
-@cache.cached(timeout=60)
-@token_required
-@role_required('admin')
+# @cache.cached(timeout=60)
+# @token_required
+# @role_required('admin')
 def find_all():
     customers = customerService.find_all()
     return customers_schema.jsonify(customers), 200
 
 
-@token_required
-@role_required('admin')
+# @token_required
+# @role_required('admin')
 def update_customer(id):
     customer = customerService.update_customer(id)
 
@@ -41,8 +41,8 @@ def update_customer(id):
 
 
 
-@token_required
-@role_required('admin')
+# @token_required
+# @role_required('admin')
 def delete_customer(id):
     customer = customerService.delete_customer(id)
     return customer_schema.jsonify(customer)

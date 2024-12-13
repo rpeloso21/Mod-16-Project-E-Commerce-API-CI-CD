@@ -70,16 +70,20 @@ def configure_rate_limit():
     limiter.limit("100 per day")(order_blueprint)
     limiter.limit("100 per day")(user_blueprint)
     
-if __name__ == "__main__":
-    app = create_app('DevelopmentConfig')
+# if __name__ == "__main__":
 
-    blue_print_config(app)
-    configure_rate_limit()
+# everything under this was tabbed over one space
 
-    with app.app_context():
 
-        # db.drop_all()
+app = create_app('DevelopmentConfig')
 
-        db.create_all()
+blue_print_config(app)
+configure_rate_limit()
 
-    app.run(debug=True)
+with app.app_context():
+
+    # db.drop_all()
+
+    db.create_all()
+
+# app.run(debug=True)

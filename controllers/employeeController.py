@@ -18,7 +18,7 @@ def save():
     else:
         return jsonify({"message": "Fallback method error activated","body":employee_data}), 400
 
-@cache.cached(timeout=60)
+# @cache.cached(timeout=60)
 def find_all():
     employees = employeeService.find_all()
     return employees_schema.jsonify(employees), 200
