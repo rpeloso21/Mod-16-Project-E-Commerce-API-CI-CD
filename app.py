@@ -50,6 +50,7 @@ def create_app(config_name):
     cache.init_app(app)
     limiter.init_app(app)
     CORS(app)
+    blue_print_config(app)
 
 
     return app
@@ -78,7 +79,6 @@ def configure_rate_limit():
 if __name__ == "__main__":
     app = create_app('DevelopmentConfig')
 
-    blue_print_config(app)
     configure_rate_limit()
 
     with app.app_context():
