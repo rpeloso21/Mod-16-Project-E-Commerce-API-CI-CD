@@ -37,6 +37,10 @@ swagger_blueprint = get_swaggerui_blueprint(
 
 app = Flask(__name__)
 
+@app.route('/test')
+def test():
+    return "Test route works!"
+
 
 def create_app(config_name):
 
