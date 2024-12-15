@@ -56,7 +56,7 @@ def create_app(config_name):
     return app
 
 def blue_print_config(app):
-    app.register_blueprint(customer_blueprint, url_prefix='/customers')
+    # app.register_blueprint(customer_blueprint, url_prefix='/customers')
     app.register_blueprint(customer_account_blueprint, url_prefix='/accounts')
     app.register_blueprint(employee_blueprint, url_prefix='/employees')
     app.register_blueprint(production_blueprint, url_prefix='/productions')
@@ -78,6 +78,8 @@ def configure_rate_limit():
     
 if __name__ == "__main__":
     app = create_app('DevelopmentConfig')
+    app.register_blueprint(customer_blueprint, url_prefix='/customers')
+
 
     configure_rate_limit()
 
