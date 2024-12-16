@@ -2,9 +2,9 @@ swagger: '2.0'
 info:
   title: 'E-Commerce API'
   version: '1.0.0'
-host: '127.0.0.1:5000'
+host: 'https://mod-16-project-e-commerce-api-ci-cd.onrender.com'
 schemes:
-  - 'http'
+  - 'https'
 consumes:
   - 'application/json'
 produces:
@@ -12,7 +12,7 @@ produces:
 securityDefinitions:
   bearerAuth:
     type: apiKey
-    name: Authorizaion
+    name: Authorization
     in: header
 paths:
   /employees:
