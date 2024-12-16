@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: 'E-Commerce API'
   version: '1.0.0'
-host: 'https://mod-16-project-e-commerce-api-ci-cd.onrender.com'
+host: 'mod-16-project-e-commerce-api-ci-cd.onrender.com'
 schemes:
   - 'https'
 consumes:
